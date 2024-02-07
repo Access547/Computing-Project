@@ -14,19 +14,19 @@ texture = ExtResource("3_burur")
 
 [node name="Character" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(226, 45)
-gridPos = Array[int]([0, 2])
+gridPos = Array[int]([1, 0])
 
 [node name="Character2" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(178, 131)
-gridPos = Array[int]([1, 2])
+gridPos = Array[int]([1, 1])
 
 [node name="Character3" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(172, 72)
-gridPos = Array[int]([1, 0])
+gridPos = Array[int]([0, 2])
 
 [node name="Character4" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(268, 91)
-gridPos = Array[int]([1, 2])
+gridPos = Array[int]([0, 3])
 
 [node name="00" type="Marker2D" parent="."]
 position = Vector2(57, 38)

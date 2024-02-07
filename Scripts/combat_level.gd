@@ -22,7 +22,7 @@ var gridInfo = {"character": null,
 
 
 var grid =	 [[gridInfo.duplicate(false), gridInfo.duplicate(),
- 			gridInfo.duplicate(false), gridInfo.duplicate()], 
+ 			 gridInfo.duplicate(false), gridInfo.duplicate()], 
 			 [gridInfo.duplicate(false), gridInfo.duplicate(),
 			 gridInfo.duplicate(false), gridInfo.duplicate()]]
 
@@ -46,9 +46,10 @@ func setGridPos(x: int, y: int, key: String, value):
 func ConstructGrid() -> void:
 	#Loops through all characters to place them
 	for i in characters.size():
-		#Update grid to contain character
-		setGridPos(characters[i].gridPos[0], characters[i].gridPos[1], "character", characters[i])
-		MoveCharacter(i) #Moves current character
+		#Update grid to contain character. This already lookin a bit messy
+		if getGridPos(characters[i].gridPos[0], characters[i].gridPos[1], "character") == null:
+			setGridPos(characters[i].gridPos[0], characters[i].gridPos[1], "character", characters[i])
+			MoveCharacter(i) #Moves current character
 
 
 func MoveCharacter(character) -> void:
