@@ -1,6 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://bddf43jepjmoj"]
+[gd_scene load_steps=4 format=3 uid="uid://bddf43jepjmoj"]
 
 [ext_resource type="Script" path="res://Scripts/combat_level.gd" id="1_seeo4"]
+[ext_resource type="PackedScene" uid="uid://b78dsbwsgro1j" path="res://Scenes/character.tscn" id="2_rtldx"]
+[ext_resource type="Texture2D" uid="uid://d3orr0g5b5p5a" path="res://Assets/Art/Placeholder level.png" id="3_burur"]
 
-[node name="CombatLevel" type="Node2D"]
+[node name="CombatLevel" type="Node2D" node_paths=PackedStringArray("characters")]
 script = ExtResource("1_seeo4")
+characters = [NodePath("Character"), NodePath("Character2"), NodePath("Character3"), NodePath("Character4")]
+
+[node name="PlaceholderLevel" type="Sprite2D" parent="."]
+position = Vector2(160, 90)
+texture = ExtResource("3_burur")
+
+[node name="Character" parent="." instance=ExtResource("2_rtldx")]
+position = Vector2(226, 45)
+gridPos = Array[int]([0, 2])
+
+[node name="Character2" parent="." instance=ExtResource("2_rtldx")]
+position = Vector2(178, 131)
+gridPos = Array[int]([1, 2])
+
+[node name="Character3" parent="." instance=ExtResource("2_rtldx")]
+position = Vector2(172, 72)
+gridPos = Array[int]([1, 0])
+
+[node name="Character4" parent="." instance=ExtResource("2_rtldx")]
+position = Vector2(268, 91)
+gridPos = Array[int]([1, 2])
+
+[node name="00" type="Marker2D" parent="."]
+position = Vector2(57, 38)
+
+[node name="01" type="Marker2D" parent="."]
+position = Vector2(57, 76)
+
+[node name="02" type="Marker2D" parent="."]
+position = Vector2(55, 115)
+
+[node name="03" type="Marker2D" parent="."]
+position = Vector2(55, 153)
+
+[node name="10" type="Marker2D" parent="."]
+position = Vector2(102, 37)
+
+[node name="11" type="Marker2D" parent="."]
+position = Vector2(104, 77)
+
+[node name="12" type="Marker2D" parent="."]
+position = Vector2(105, 115)
+
+[node name="13" type="Marker2D" parent="."]
+position = Vector2(105, 151)
