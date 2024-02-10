@@ -14,7 +14,7 @@ texture = ExtResource("3_burur")
 
 [node name="Character" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(226, 45)
-gridPos = Array[int]([1, 0])
+gridPos = Array[int]([0, 1])
 
 [node name="Character2" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(178, 131)

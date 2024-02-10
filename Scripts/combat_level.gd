@@ -34,12 +34,19 @@ func _ready() -> void:
 
 
 #A function to get the position of the grid, perhaps a bit cleaner than typing grid[x][y][key]
-func getGridPos(x: int, y: int, key: String):
+func getGridPos(x: int, y: int, key: String) -> Variant:
 	return grid[x][y][key]
 
 #A function to set the position of a tile in the grid, perhaps a bit cleaner than typing grid[x][y][key] = dwa
 func setGridPos(x: int, y: int, key: String, value):
 	grid[x][y][key] = value
+
+func GetCharacterGridPosAsString(character) -> String:
+	return str(character.gridPos[0], character.gridPos[1])
+	
+func GetCharacterGrosPosAsVector(character) -> Vector2:
+	return Vector2(character.gridPos[0], character.gridPos[1])
+	
 
 
 #Function used to construct the grid at combat start.
@@ -49,8 +56,8 @@ func ConstructGrid() -> void:
 		#Update grid to contain character. This already lookin a bit messy
 		if getGridPos(characters[i].gridPos[0], characters[i].gridPos[1], "character") == null:
 			setGridPos(characters[i].gridPos[0], characters[i].gridPos[1], "character", characters[i])
-			MoveCharacter(i) #Moves current character
+			MoveCharacter(characters[i]) #Moves current character
 
 
 func MoveCharacter(character) -> void:
-	characters[character].position = get_node(str(characters[character].gridPos[0], characters[character].gridPos[1])).position
+	character.position = get_node(GetCharacterGridPosAsString(character)).position
