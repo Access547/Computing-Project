@@ -51,3 +51,61 @@ position = Vector2(105, 115)
 
 [node name="13" type="Marker2D" parent="."]
 position = Vector2(105, 151)
+
+[node name="Menus" type="CanvasLayer" parent="."]
+
+[node name="Main" type="Control" parent="Menus"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Backdrop" type="Panel" parent="Menus/Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 2.975
+anchor_right = 8.0
+anchor_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Menus/Main/Backdrop"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 61.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menus/Main/Backdrop/MarginContainer"]
+layout_mode = 2
+
+[node name="Attack" type="RichTextLabel" parent="Menus/Main/Backdrop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "Attack"
+fit_content = true
+
+[node name="Attack2" type="RichTextLabel" parent="Menus/Main/Backdrop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "Attack"
+fit_content = true
+
+[node name="Attack3" type="RichTextLabel" parent="Menus/Main/Backdrop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "Attack"
+fit_content = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 230.0
+offset_top = 143.0
+offset_right = 313.0
+offset_bottom = 174.0
+text = "Next turn"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

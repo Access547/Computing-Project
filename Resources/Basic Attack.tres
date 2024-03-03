@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DamageEffect" load_steps=2 format=3 uid="uid://b55lbls1brp54"]
+
+[ext_resource type="Script" path="res://Resources/damage.gd" id="1_h74qm"]
+
+[resource]
+script = ExtResource("1_h74qm")
+tiles = Array[Vector2i]([Vector2i(1, 1)])
+damageAmount = 5

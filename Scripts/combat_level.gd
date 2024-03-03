@@ -2,7 +2,11 @@ extends Node2D
 
 var gridInfo = {"character": null,
 				"targeted": true,
-				"effect": null}
+				"effect": null,
+				"damage": null}
+
+
+var turn: int = 1
 
 @export var characters: Array[Character]
 
@@ -20,7 +24,6 @@ var gridInfo = {"character": null,
 #'gridInfo' dictionary. To reference a specific grid space, follow the chart above. AKA to get info about tile 
 #1,2, you would write grid[1][2]["key"]
 
-
 var grid =	 [[gridInfo.duplicate(false), gridInfo.duplicate(),
  			 gridInfo.duplicate(false), gridInfo.duplicate()], 
 			 [gridInfo.duplicate(false), gridInfo.duplicate(),
@@ -28,7 +31,7 @@ var grid =	 [[gridInfo.duplicate(false), gridInfo.duplicate(),
 
 
 
-func _ready() -> void: 
+func _ready() -> void:
 	ConstructGrid()
 
 
@@ -59,5 +62,23 @@ func ConstructGrid() -> void:
 			MoveCharacter(characters[i]) #Moves current character
 
 
+#Moves the character physically in space
 func MoveCharacter(character) -> void:
 	character.position = get_node(GetCharacterGridPosAsString(character)).position
+
+
+#Sets the grid effect of a tile. A grid effect is how enemies damage players by creating hazards on grid tiles
+func SetGridEffect(effect: DamageEffect) -> void:
+	for i in effect.tiles.size():
+		grid[effect.tiles[i].x][effect.tiles[i].y]["damage"] = effect
+
+
+func _on_button_pressed() -> void:
+	pass
+	
+	
+	
+	
+#Passes the turn on a character and onto the next character
+func ResolveTurn(character) -> void:
+	pass
