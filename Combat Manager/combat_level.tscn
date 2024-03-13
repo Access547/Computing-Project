@@ -1,32 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://bddf43jepjmoj"]
+[gd_scene load_steps=5 format=3 uid="uid://bddf43jepjmoj"]
 
-[ext_resource type="Script" path="res://Scripts/combat_level.gd" id="1_seeo4"]
-[ext_resource type="PackedScene" uid="uid://b78dsbwsgro1j" path="res://Scenes/character.tscn" id="2_rtldx"]
+[ext_resource type="Script" path="res://Combat Manager/combat_level.gd" id="1_div38"]
+[ext_resource type="PackedScene" uid="uid://b78dsbwsgro1j" path="res://Player Characters/character.tscn" id="2_rtldx"]
 [ext_resource type="Texture2D" uid="uid://d3orr0g5b5p5a" path="res://Assets/Art/Placeholder level.png" id="3_burur"]
+[ext_resource type="PackedScene" uid="uid://bbsd2guhf0vwp" path="res://NPCs/Basic Enemy/Basic Enemy.tscn" id="4_u5m7v"]
 
 [node name="CombatLevel" type="Node2D" node_paths=PackedStringArray("characters")]
-script = ExtResource("1_seeo4")
-characters = [NodePath("Character"), NodePath("Character2"), NodePath("Character3"), NodePath("Character4")]
+script = ExtResource("1_div38")
+characters = [NodePath("James"), NodePath("Sean"), NodePath("Marcus"), NodePath("Theo")]
 
 [node name="PlaceholderLevel" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
 texture = ExtResource("3_burur")
 
-[node name="Character" parent="." instance=ExtResource("2_rtldx")]
+[node name="Basic Enemy" parent="." instance=ExtResource("4_u5m7v")]
+position = Vector2(262, 38)
+maxHealth = 3
+
+[node name="Basic Enemy2" parent="." instance=ExtResource("4_u5m7v")]
+position = Vector2(228, 113)
+maxHealth = 20
+
+[node name="James" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(226, 45)
 gridPos = Array[int]([0, 1])
+maxHealth = 20
+damage = 3
 
-[node name="Character2" parent="." instance=ExtResource("2_rtldx")]
+[node name="Sean" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(178, 131)
 gridPos = Array[int]([1, 1])
+maxHealth = 20
+damage = 1
 
-[node name="Character3" parent="." instance=ExtResource("2_rtldx")]
+[node name="Marcus" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(172, 72)
 gridPos = Array[int]([0, 2])
+maxHealth = 20
+damage = 6
 
-[node name="Character4" parent="." instance=ExtResource("2_rtldx")]
+[node name="Theo" parent="." instance=ExtResource("2_rtldx")]
 position = Vector2(268, 91)
 gridPos = Array[int]([0, 3])
+maxHealth = 20
+damage = 5
 
 [node name="00" type="Marker2D" parent="."]
 position = Vector2(57, 38)
@@ -108,4 +125,12 @@ offset_right = 313.0
 offset_bottom = 174.0
 text = "Next turn"
 
+[node name="Attack" type="Button" parent="."]
+offset_left = 149.0
+offset_top = 147.0
+offset_right = 203.0
+offset_bottom = 172.0
+text = "dwa"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Attack" to="." method="_on_attack_pressed"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b78dsbwsgro1j"]
+
+[ext_resource type="Texture2D" uid="uid://cuvfwxuj225uc" path="res://icon.svg" id="1_oyai2"]
+[ext_resource type="Script" path="res://Player Characters/character.gd" id="2_ib76w"]
+
+[node name="Character" type="Sprite2D" groups=["Combatant"]]
+scale = Vector2(0.207031, 0.207031)
+texture = ExtResource("1_oyai2")
+script = ExtResource("2_ib76w")

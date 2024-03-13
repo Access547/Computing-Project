@@ -2,13 +2,18 @@ extends Node2D
 
 var gridInfo = {"character": null,
 				"targeted": true,
-				"effect": null,
-				"damage": null}
+				"effect": null}
 
 
 var turn: int = 1
+var turnOrder: Array[Character] #This needs to be populated automatically using some sort of speed stat!
+
+
 
 @export var characters: Array[Character]
+@export var enemies: Array[Character]
+
+
 
 #  0   1
 #╔═══╦═══╗
@@ -24,15 +29,21 @@ var turn: int = 1
 #'gridInfo' dictionary. To reference a specific grid space, follow the chart above. AKA to get info about tile 
 #1,2, you would write grid[1][2]["key"]
 
-var grid =	 [[gridInfo.duplicate(false), gridInfo.duplicate(),
- 			 gridInfo.duplicate(false), gridInfo.duplicate()], 
-			 [gridInfo.duplicate(false), gridInfo.duplicate(),
-			 gridInfo.duplicate(false), gridInfo.duplicate()]]
+var grid =	 [[gridInfo.duplicate(false), gridInfo.duplicate(false),
+ 			 gridInfo.duplicate(false), gridInfo.duplicate(false)], 
+			 [gridInfo.duplicate(false), gridInfo.duplicate(false),
+			 gridInfo.duplicate(false), gridInfo.duplicate(false)]]
 
 
 
 func _ready() -> void:
 	ConstructGrid()
+	turnOrder.append_array(get_tree().get_nodes_in_group("Combatant"))
+	print(turnOrder[0])
+	enemies.append_array(get_tree().get_nodes_in_group("Enemy"))
+	
+	for i in enemies.size():
+		SetGridEffect(enemies[i].nextAttack, enemies[i])
 
 
 
@@ -68,17 +79,33 @@ func MoveCharacter(character) -> void:
 
 
 #Sets the grid effect of a tile. A grid effect is how enemies damage players by creating hazards on grid tiles
-func SetGridEffect(effect: DamageEffect) -> void:
+func SetGridEffect(effect: DamageEffect, owner: Enemy) -> void:
+	var newKey = str(owner, "damage")
 	for i in effect.tiles.size():
-		grid[effect.tiles[i].x][effect.tiles[i].y]["damage"] = effect
+		grid[effect.tiles[i].x][effect.tiles[i].y][newKey] = effect
+
+
+
+func ActivateGridEffect(tile: Dictionary, enemy: Character):
+	tile["character"].health -= tile[str(enemy, "damage")].damageAmount
+	print(tile["character"].health)
+
 
 
 func _on_button_pressed() -> void:
-	pass
-	
-	
-	
+	ResolveTurn()
+	ActivateGridEffect(grid[1][1], get_tree().get_first_node_in_group("Enemy"))
+
+
 	
 #Passes the turn on a character and onto the next character
-func ResolveTurn(character) -> void:
-	pass
+func ResolveTurn() -> void:
+	turnOrder.pop_front()
+	print(turnOrder[0].name)
+
+
+
+
+func _on_attack_pressed():
+	enemies[0].health -= turnOrder[0].damage
+	ResolveTurn()

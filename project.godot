@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Computing-project"
-run/main_scene="res://Scenes/combat_level.tscn"
+run/main_scene="res://Combat Manager/combat_level.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 

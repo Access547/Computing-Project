@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbsd2guhf0vwp"]
+
+[ext_resource type="Texture2D" uid="uid://cuvfwxuj225uc" path="res://icon.svg" id="1_dko7g"]
+[ext_resource type="Script" path="res://NPCs/Basic Enemy/Basic Enemy.gd" id="2_j2lfe"]
+[ext_resource type="Resource" uid="uid://b55lbls1brp54" path="res://Resources/Basic Attack.tres" id="3_6fj8k"]
+
+[node name="Basic Enemy" type="Sprite2D" groups=["Combatant", "Enemy"]]
+modulate = Color(1, 0.0156863, 1, 1)
+scale = Vector2(0.207031, 0.207031)
+texture = ExtResource("1_dko7g")
+script = ExtResource("2_j2lfe")
+attacks = Array[Resource("res://Resources/damage.gd")]([ExtResource("3_6fj8k")])
